@@ -1,0 +1,132 @@
+################################################################################
+# Homebrew Taps 
+################################################################################
+homebrew_taps:
+  - homebrew/core
+  - homebrew/cask
+  - homebrew/cask-versions
+
+################################################################################
+# Homebrew Formulae 
+################################################################################
+homebrew_installed_packages:
+  - act
+  - ansible
+  - ansible-lint
+  - awscli
+  - axel
+  - azure-cli
+  - bash-completion
+  - bats
+  - brotli
+  - cocoapods
+  - curl
+  - elixir
+  - erlang
+  - fastlane
+  - gh
+  - git
+  - git-extras
+  - git-flow
+  - git-lfs
+  - glances
+  - go
+  - gradle
+  - grep
+  - helm
+  - hugo
+  - imagemagick
+  - ipcalc
+  - istioctl
+  - jq
+  - k3sup
+  - k9s
+  - kind
+  - kops
+  - kpt
+  - krew
+  - kubeaudit
+  - kubebuilder
+  - kubectx
+  - kubernetes-cli
+  - kubeseal
+  - kubespy
+  - kubeval
+  - kustomize
+  - lsof
+  - minikube
+  - mcrypt
+  - nmap
+  - node
+  - nvm
+  - openjdk
+  - openssl@3
+  - packer
+  - podman
+  - popt
+  - pre-commit
+  - python
+  - qrencode
+  - rats
+  - rbenv
+  - readline
+  - rsync
+  - ruby
+  - ruby-build
+  - rust
+  - salt
+  - shellcheck
+  - skaffold
+  - terraform-docs
+  - terraformer
+  - terrascan
+  - tfenv
+  - tig
+  - tmux
+  - velero
+  - watch
+  - wget
+  - zsh-history-substring-search
+
+################################################################################
+# Homebrew Casks
+################################################################################
+homebrew_cask_appdir: /Applications
+
+homebrew_cask_apps:
+  - 1password-beta
+  - aerial
+  - alfred
+  - aws-vault
+  - azure-data-studio
+  - balenaetcher
+  - cf-terraforming
+  - cleanmymac
+  - docker
+  - dropbox
+  - evernote
+  - firefox
+  - flutter
+  - flycut
+  - gimp
+  - github
+  - google-chrome
+  - google-cloud-sdk
+  - gpg-suite
+  - iterm2
+  - jetbrains-toolbox
+  - keybase
+  - kubecontext
+  - lulu
+  - nordvpn
+  - parallels
+  - postman
+  - rectangle
+  - selfcontrol
+  - skype
+  - slack
+  - spotify
+  - tor-browser
+  - vagrant
+  - visual-studio-code
+  - vlc

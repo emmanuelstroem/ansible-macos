@@ -1,0 +1,22 @@
+---
+################################################################################
+# Mas 
+################################################################################
+# See `geerlingguy.mas` role documentation for usage instructions.
+mas_email: ""
+mas_password: ""
+
+mas_signin_dialog: false
+
+mas_upgrade_all_apps: true
+
+mas_installed_apps:
+  - 497799835  # Xcode
+  - 1076145960 # Double Shot
+  - 972028355  # Micro Snitch
+  - 1438243180 # Dark Reader for Safari
+  - 1370791134 # DigiDoc4 Client
+  - 1295203466 # Microsoft Remote Desktop
+  - 1477385213 # Save to Pocket
+  - 409203825  # Numbers
+  - 409201541  # Pages

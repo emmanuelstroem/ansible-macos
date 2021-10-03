@@ -1,0 +1,40 @@
+################################################################################
+# Dock 
+################################################################################
+# Set to 'true' to configure the Dock via dockutil.
+configure_dock: true
+dockitems_remove:
+  - Contacts
+  - FaceTime
+  - Keynote
+  - Launchpad
+  - Maps
+  - Music
+  - Notes
+  - Numbers
+  - Pages
+  - Podcasts
+  - Reminders
+  - TV
+  - 'App Store'
+  - 'Google Chrome'
+  
+dockitems_persist:
+  - name: "System"
+    path: "/Applications/System Preferences.app"
+    pos: 1
+  - name: "Safari"
+    path: "/Applications/Safari.app"
+    pos: 2
+  - name: "Messages"
+    path: "/Applications/Messages.app"
+    pos: 3
+  - name: "Mail"
+    path: "/Applications/Mail.app"
+    pos: 4
+  - name: "Photos"
+    path: "/Applications/Photos.app"
+    pos: 5
+  # - name: "Google Chrome"
+  #   path: "/Applications/Google Chrome.app"
+  #   pos: 4

@@ -1,0 +1,19 @@
+################################################################################
+# Dotfiles
+################################################################################
+configure_dotfiles: true
+dotfiles_repo: https://github.com/emmanuelstroem/dotfiles.git
+dotfiles_repo_accept_hostkey: true
+dotfiles_repo_local_destination: ~/Developer/GitHub/dotfiles
+dotfiles_files:
+  - .gitconfig
+  - .gitignore
+  - .osx
+  - .zshrc
+
+configure_osx: true
+
+################################################################################
+# OSX 
+################################################################################
+osx_script: "~/Developer/GitHub/dotfiles/.osx --no-restart"
