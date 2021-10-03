@@ -1,0 +1,40 @@
+- name: MacBooks
+  hosts: macbooks
+  become: false
+  gather_facts: false
+
+  vars_files:
+    - config/homebrew.yaml
+    - config/dock.yaml
+    - config/dotfiles.yaml
+    - config/mas.yaml
+    - config/extras.yaml
+
+  tasks:
+    - name: Install xcode-select
+      import_tasks: tasks/xcode-select.yaml
+      become: true
+
+    - name: Setup Terminal
+      import_tasks: tasks/terminal.yaml
+      vars:
+        configure_terminal: true
+
+  roles:
+    - role: dotfiles
+      when: configure_dotfiles
+      tags: ['dotfiles']
+
+    - role: homebrew
+      tags: ['homebrew']
+
+    - role: mas
+      when: mas_installed_apps or mas_installed_app_ids
+      tags: ['mas']
+
+    - role: extras
+      tags: ['extras']
+
+    - role: dock
+      when: configure_dock
+      tags: ['dock']
