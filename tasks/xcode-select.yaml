@@ -1,0 +1,7 @@
+- name: Check if installed
+  ansible.builtin.command: xcode-select -v
+  register: xcode_select_version
+
+- name: Install commandline-tools
+  ansible.builtin.command: xcode-select --install
+  when: "'xcode-select version' not in xcode_select_version.stdout"
