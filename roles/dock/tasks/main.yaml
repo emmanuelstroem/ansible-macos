@@ -1,0 +1,74 @@
+---
+- name: Install dockutil.
+  community.general.homebrew:
+    name: dockutil
+    state: present
+
+################################################################################
+# Add
+################################################################################
+- name: "See if Dock item {{ item.name | default(item) }} exists."
+  ansible.builtin.command: "dockutil --find '{{ item.name }}'"
+  register: dockitem_exists
+  failed_when: >
+    "No such file or directory" in dockitem_exists.stdout
+    or "command not found" in dockitem_exists.stdout
+  changed_when: false
+  tags: ['dock']
+  with_items: "{{ dockitems_persist }}"
+
+- name: print
+  ansible.builtin.debug:
+    msg: "{{dockitem_exists}}"
+
+- name: Ensure Dock item {{ item.name | default(item) }} exists.
+  ansible.builtin.command: "dockutil --add '{{ item.path }}' --allhomes"
+  when: dockitem_exists.results[index].rc >0
+  tags: ['dock']
+  loop_control:
+    index_var: index
+  with_items: "{{ dockitems_persist }}"
+
+################################################################################
+# Remove
+################################################################################
+- name: "See if {{ item }} is in the Dock."
+  ansible.builtin.command:
+    cmd: dockutil --find '{{ item }}'
+  register: dockitem_exists
+  changed_when: false
+  failed_when: >
+    "No such file or directory" in dockitem_exists.stdout
+    or "command not found" in dockitem_exists.stdout
+  tags: ['dock']
+  with_items: "{{ dockitems_remove }}"
+
+- name: Ensure Dock item {{ item }} is removed.
+  ansible.builtin.command:
+    cmd: dockutil --remove '{{ item }}' --allhomes
+  when: dockitem_exists.results[index].rc == 0
+  tags: ['dock']
+  loop_control:
+    index_var: index
+  with_items: "{{ dockitems_remove }}"
+
+################################################################################
+# Position
+################################################################################
+- name: "Check the current Dock position of {{ item.name | default(item) }}."
+  ansible.builtin.command:
+    cmd: dockutil --find '{{ item.name | default(item) }}'
+  register: dock_item_position
+  failed_when: '"command not found" in dock_item_position.stdout'
+  changed_when: false
+  with_items: "{{ dockitems_persist }}"
+
+- name: Get current dock item position from output.
+  set_fact:
+    current_position: "{{ dock_item_position | regex_replace('^.*slot (.*) in.*$', '\\1') }}"
+
+- name: Move dock item to the correct position.
+  ansible.builtin.command:
+    cmd: dockutil --move '{{ item.name | default(item) }}' --position '{{ item.pos }}' --allhomes
+  when: current_position|int != item.pos|int
+  with_items: "{{ dockitems_persist }}"

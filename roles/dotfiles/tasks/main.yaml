@@ -1,0 +1,44 @@
+---
+- name: Ensure dotfiles repository is cloned locally.
+  ansible.builtin.git:
+    repo: "{{ dotfiles_repo }}"
+    dest: "{{ dotfiles_repo_local_destination }}"
+    version: "{{ dotfiles_repo_version | default('master') }}"
+    accept_hostkey: "{{ dotfiles_repo_accept_hostkey | default('yes') }}"
+    force: yes
+  become: false
+
+- name: Ensure all configured dotfiles are links.
+  ansible.builtin.command: "ls -F {{ item }}"
+  args:
+    chdir: ~/
+  register: existing_dotfile_info
+  failed_when: false
+  check_mode: false
+  changed_when: false
+  with_items: "{{ dotfiles_files }}"
+
+- name: Remove existing dotfiles file if a replacement is being linked.
+  ansible.builtin.file:
+    path: "~/{{ dotfiles_files[item.0] }}"
+    state: absent
+  when: "'@' not in item.1.stdout"
+  with_indexed_items: "{{ existing_dotfile_info.results }}"
+
+- name: Link dotfiles into home folder.
+  ansible.builtin.file:
+    src: "{{ dotfiles_repo_local_destination }}/{{ item }}"
+    dest: "~/{{ item }}"
+    state: link
+    mode: 0644
+  become: false
+  with_items: "{{ dotfiles_files }}"
+
+# # TODO: Use sudo once .osx can be run via root with no user interaction.
+- name: Run .osx dotfiles.
+  ansible.builtin.shell: sh .osx --no-restart
+  args:
+    chdir: ~/Developer/GitHub/dotfiles/
+  changed_when: false
+  when: configure_osx
+  become: true

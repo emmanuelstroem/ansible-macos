@@ -1,0 +1,43 @@
+################################################################################
+# Taps
+################################################################################
+- name: Update homebrew
+  community.general.homebrew:
+    update_homebrew: yes
+
+- name: Tap a Homebrew repositories
+  community.general.homebrew_tap:
+    name: "{{ item }}"
+    state: present
+  with_items:
+  - "{{ homebrew_taps }}"
+
+################################################################################
+# Formulae
+################################################################################
+- name: Upgrade all Formulae
+  community.general.homebrew:
+    upgrade_all: yes
+
+- name: Install Formulae
+  community.general.homebrew:
+    name: "{{ item }}"
+    state: present
+  with_items:
+  - "{{ homebrew_installed_packages }}"
+
+################################################################################
+# Casks
+################################################################################
+- name: Upgrade all Casks
+  community.general.homebrew_cask:
+    upgrade_all: true
+
+- name: Install Casks with install options
+  community.general.homebrew_cask:
+    name: "{{ item }}"
+    state: present
+    install_options: 'debug,appdir={{ homebrew_cask_appdir }}'
+  with_items:
+  - "{{ homebrew_cask_apps }}"
+
