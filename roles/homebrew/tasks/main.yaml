@@ -1,4 +1,18 @@
 ################################################################################
+# Install
+################################################################################
+- name: Check homebrew path
+  ansible.builtin.shell:
+    cmd: which brew
+  register: check_brew
+
+- name: Install homebrew
+  ansible.builtin.shell:
+    cmd: $(which bash) -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  become: false
+  when: '"/usr/local/bin/brew" not in check_brew.stdout'
+
+################################################################################
 # Taps
 ################################################################################
 - name: Update homebrew
@@ -40,4 +54,3 @@
     install_options: 'debug,appdir={{ homebrew_cask_appdir }}'
   with_items:
   - "{{ homebrew_cask_apps }}"
-
