@@ -4,7 +4,7 @@
 configure_dotfiles: true
 dotfiles_repo: https://github.com/emmanuelstroem/dotfiles.git
 dotfiles_repo_accept_hostkey: true
-dotfiles_repo_local_destination: ~/Developer/GitHub/dotfiles
+dotfiles_repo_local_destination: ~/Developer/Github/dotfiles
 dotfiles_files:
   - .gitconfig
   - .gitignore
@@ -16,4 +16,4 @@ configure_osx: true
 ################################################################################
 # OSX 
 ################################################################################
-osx_script: "~/Developer/GitHub/dotfiles/.osx --no-restart"
+osx_script: "~/Developer/Github/dotfiles/.osx --no-restart"
