@@ -111,6 +111,7 @@ homebrew_cask_apps:
   - flutter
   - flycut
   - font-fira-code
+  - font-jetbrains-mono
   - gimp
   - github
   - google-chrome
