@@ -21,6 +21,7 @@ homebrew_installed_packages:
   - bats
   - brotli
   - cocoapods
+  - cheat
   - curl
   - elixir
   - erlang
