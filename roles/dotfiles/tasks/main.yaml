@@ -1,9 +1,25 @@
 ---
+- name: check if ohmyzsh is installed
+  ansible.builtin.stat: 
+    path: "$HOME/.oh-my-zsh"
+  register: ohmyzsh_path
+
+- name: remove ohmyzsh
+  ansible.builtin.file: 
+    path: "$HOME/.oh-my-zsh"
+    state: absent
+  when: ohmyzsh_path.stat.exists
+
+- name: install ohmyzsh
+  ansible.builtin.shell: 
+    cmd:  $(which bash) -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  become: false
+
 - name: Ensure dotfiles repository is cloned locally.
   ansible.builtin.git:
     repo: "{{ dotfiles_repo }}"
     dest: "{{ dotfiles_repo_local_destination }}"
-    version: "{{ dotfiles_repo_version | default('master') }}"
+    version: "{{ dotfiles_repo_version | default('main') }}"
     accept_hostkey: "{{ dotfiles_repo_accept_hostkey | default('yes') }}"
     force: yes
   become: false
