@@ -102,6 +102,7 @@ homebrew_cask_apps:
   - balenaetcher
   - cleanmymac
   - docker
+  - discord
   - dropbox
   - evernote
   - firefox
