@@ -45,7 +45,6 @@ homebrew_installed_packages:
   - k9s
   - kind
   - kops
-  - kpt
   - krew
   - kubeaudit
   - kubebuilder
@@ -53,7 +52,6 @@ homebrew_installed_packages:
   - kubernetes-cli
   - kubeseal
   - kubespy
-  - kubeval
   - kustomize
   - lsof
   - minikube
@@ -102,7 +100,6 @@ homebrew_cask_apps:
   - aws-vault
   - azure-data-studio
   - balenaetcher
-  - cf-terraforming
   - cleanmymac
   - docker
   - dropbox
