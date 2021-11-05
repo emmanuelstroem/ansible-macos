@@ -6,6 +6,7 @@ dotfiles_repo: https://github.com/emmanuelstroem/dotfiles.git
 dotfiles_repo_accept_hostkey: true
 dotfiles_repo_local_destination: ~/Developer/Github/dotfiles
 dotfiles_files:
+  - .aliases
   - .gitconfig
   - .gitignore
   - .osx
